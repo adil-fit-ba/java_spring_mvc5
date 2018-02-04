@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,18 +20,17 @@ import java.util.List;
     public class OdjeljenjeController
     {
 
-        @Autowired
-        private SessionFactory sessionFactory;
+        @PersistenceContext
+        private EntityManager em;
 
         @GetMapping("/Odjeljenje/Index")
         public String Index(Model model)
         {
 
-            EntityManager session = sessionFactory.createEntityManager();
             OdjeljenjeIndexVM x = new OdjeljenjeIndexVM();
             x.rows = new ArrayList<>();
 
-            List<Odjeljenje> odjeljenja = session.createQuery("select x from Odjeljenje x", Odjeljenje.class).getResultList();
+            List<Odjeljenje> odjeljenja = em.createQuery("select x from Odjeljenje x", Odjeljenje.class).getResultList();
             odjeljenja.forEach(a-> {
                 OdjeljenjeIndexVM.Row row = new OdjeljenjeIndexVM.Row();
 
@@ -46,9 +46,7 @@ import java.util.List;
 
             model.addAttribute(x);
 
-            session.close();
-
-            return "Odjeljenje/Index";
+            return "Odjeljenje/index";
         }
 
         public String Obrisi(int id)

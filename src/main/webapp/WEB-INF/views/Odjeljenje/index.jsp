@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>BORAJI.COM</title>
+<title>test.COM</title>
 </head>
 <body>
 	<h1>Spring MVC 5 + Spring Security 5 + Hibernate 5 example</h1>
-	<h2>${}</h2>
+	<h2>ss</h2>
 
 	<form action="/logout" method="post">
 		<input value="Logout" type="submit">
