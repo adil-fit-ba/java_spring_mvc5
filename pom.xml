@@ -5,7 +5,7 @@
 
 	<groupId>ba.fit.spring</groupId>
 	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1</version>
 	<packaging>war</packaging>
 
 	<name>demo</name>
@@ -106,6 +106,11 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>
+
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<source>1.9</source>
 					<target>1.9</target>
