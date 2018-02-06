@@ -21,7 +21,7 @@ import static org.hibernate.cfg.Environment.*;
 @ComponentScan(basePackages = "ba.fit.java.spring.mvc")
 public class AppConfig {
 
-    @Bean(name="HelloWorld")
+    @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
@@ -31,10 +31,16 @@ public class AppConfig {
         return viewResolver;
     }
 
+//    @Bean
+//    public LocalEntityManagerFactoryBean getEntityManagerFactoryBean() {
+//        LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
+//        factoryBean.setPersistenceUnitName("LOCAL_PERSISTENCE");
+//        return factoryBean;
+//    }
 
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean geEntityManagerFactoryBean() {
+    public LocalContainerEntityManagerFactoryBean getContainerEntityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setPersistenceUnitName("LOCAL_PERSISTENCE");
         return factoryBean;
@@ -43,7 +49,7 @@ public class AppConfig {
     @Bean
     public JpaTransactionManager geJpaTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(geEntityManagerFactoryBean().getObject());
+        transactionManager.setEntityManagerFactory(getContainerEntityManagerFactoryBean().getObject());
         return transactionManager;
     }
 

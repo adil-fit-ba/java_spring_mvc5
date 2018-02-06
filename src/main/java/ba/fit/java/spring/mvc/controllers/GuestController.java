@@ -1,6 +1,8 @@
 package ba.fit.java.spring.mvc.controllers;
  
+import ba.fit.java.spring.mvc.dao.KorisnikDAO;
 import ba.fit.java.spring.mvc.dao.MojDBInitializer;
+import ba.fit.java.spring.mvc.entitymodels.KorisnickiNalog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +17,8 @@ import javax.persistence.PersistenceContext;
 public class GuestController {
 
 
-    @PersistenceContext
-    private EntityManager _context;
+    @Autowired
+    private KorisnikDAO userDao;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -33,7 +35,10 @@ public class GuestController {
     @Transactional(readOnly = false)
     public String TestDB()
     {
-        MojDBInitializer.Izvrsi(_context);
+      //  MojDBInitializer.Izvrsi(_context);
+
+        userDao.saveUserDetail(new KorisnickiNalog("a", "b"));
+
         return "redirect:/";
     }
 }
