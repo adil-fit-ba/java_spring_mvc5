@@ -16,6 +16,14 @@ public class Predmet
 
     private int razred;
 
+    public Predmet(String naziv, int razred) {
+        this.naziv = naziv;
+        this.razred = razred;
+    }
+
+    public Predmet() {
+    }
+
     public int getId() {
         return id;
     }

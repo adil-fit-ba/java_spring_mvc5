@@ -19,6 +19,16 @@ public class DodjeljenPredmet
 
     private int zakljucnoKrajGodine ;
 
+    public DodjeljenPredmet(OdjeljenjeStavka odjeljenjeStavka, Predmet predmet, int zakljucnoPolugodiste, int zakljucnoKrajGodine) {
+        this.odjeljenjeStavka = odjeljenjeStavka;
+        this.predmet = predmet;
+        this.zakljucnoPolugodiste = zakljucnoPolugodiste;
+        this.zakljucnoKrajGodine = zakljucnoKrajGodine;
+    }
+
+    public DodjeljenPredmet() {
+    }
+
     public int getId() {
         return id;
     }

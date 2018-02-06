@@ -12,7 +12,7 @@ import java.util.List;
 public class MyJpaDao< T extends Serializable> {
     private Class<T> clazz;
 
-    protected MyJpaDao(EntityManager entityManager) {
+    public MyJpaDao(EntityManager entityManager) {
         this.entityManager = entityManager;
         clazz = (Class<T>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];
@@ -20,24 +20,14 @@ public class MyJpaDao< T extends Serializable> {
 
     protected EntityManager entityManager;
 
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
 
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    public void setClazz(Class<T> clazzToSet) {
-        this.clazz = clazzToSet;
-    }
 
     public T findOne(Long id) {
         return entityManager.find(clazz, id);
     }
 
     public List<T> findAll() {
-        return entityManager.createQuery("from " + clazz.getName()).getResultList();
+        return entityManager.createQuery("select x from " + clazz.getName() + " x").getResultList();
     }
 
     public void save(T entity) {
@@ -57,4 +47,7 @@ public class MyJpaDao< T extends Serializable> {
         delete(entity);
     }
 
+    public boolean any() {
+        return entityManager.createQuery("select count(x) from " + clazz.getName() + " x").getFirstResult() > 0;
+    }
 }

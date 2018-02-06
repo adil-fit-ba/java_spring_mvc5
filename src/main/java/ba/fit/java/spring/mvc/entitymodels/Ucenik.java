@@ -1,10 +1,10 @@
 package ba.fit.java.spring.mvc.entitymodels;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Ucenik
-{
+public class Ucenik implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -14,6 +14,15 @@ public class Ucenik
 
     @ManyToOne(optional = true)
     private KorisnickiNalog korisnickiNalog;
+
+    public Ucenik() {
+    }
+
+    public Ucenik(String ime, String prezime) {
+
+        this.ime = ime;
+        this.prezime = prezime;
+    }
 
     public int getId() {
         return id;

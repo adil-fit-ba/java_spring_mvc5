@@ -15,6 +15,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Controller
     public class OdjeljenjeController
@@ -26,23 +29,25 @@ import java.util.List;
         @GetMapping("/Odjeljenje/Index")
         public String Index(Model model)
         {
-
             OdjeljenjeIndexVM x = new OdjeljenjeIndexVM();
-            x.rows = new ArrayList<>();
 
             List<Odjeljenje> odjeljenja = em.createQuery("select x from Odjeljenje x", Odjeljenje.class).getResultList();
-            odjeljenja.forEach(a-> {
-                OdjeljenjeIndexVM.Row row = new OdjeljenjeIndexVM.Row();
 
-                row.isPrebacenuViseOdjeljenje = a.isPrebacenuViseOdjeljenje();
-                row.odjeljenjeId=a.getId();
-                row.oznaka = a.getOznaka();
-                row.razred=a.getRazred();
-                row.razrednik = a.getRazrednik().getIme() + " " + a.getRazrednik().getPrezime();
-                row.skolskaGodina = a.getSkolskaGodina();
-
-                x.rows.add(row);
-            });
+            x.rows = odjeljenja.stream().map(
+                            a -> {
+                                OdjeljenjeIndexVM.Row row = new OdjeljenjeIndexVM.Row();
+                                row.isPrebacenuViseOdjeljenje = a.isPrebacenuViseOdjeljenje();
+                                row.odjeljenjeId=a.getId();
+                                row.oznaka = a.getOznaka();
+                                row.razred=a.getRazred();
+                                row.razrednik = a.getRazrednik().getIme() + " " + a.getRazrednik().getPrezime();
+                                row.skolskaGodina = a.getSkolskaGodina();
+                                row.prosjekOcjena = em.createQuery("select avg(x) from DodjeljenPredmet  x where x.odjeljenjeStavka.odjeljenje.id  = :id", float.class)
+                                        .setParameter("id", a.getId())
+                                        .getSingleResult();
+                                return row;
+                            }
+                    ).collect(toList());
 
             model.addAttribute(x);
 

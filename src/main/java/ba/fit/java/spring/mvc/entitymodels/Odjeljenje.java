@@ -17,10 +17,20 @@ public class Odjeljenje
 
     private String oznaka;
 
+    public Odjeljenje(String skolskaGodina, int razred, String oznaka, Nastavnik razrednik) {
+        this.skolskaGodina = skolskaGodina;
+        this.razred = razred;
+        this.oznaka = oznaka;
+        this.razrednik = razrednik;
+    }
+
     private boolean isPrebacenuViseOdjeljenje;
 
     @ManyToOne(optional = false)
     private Nastavnik razrednik;
+
+    public Odjeljenje() {
+    }
 
     public int getId() {
         return id;

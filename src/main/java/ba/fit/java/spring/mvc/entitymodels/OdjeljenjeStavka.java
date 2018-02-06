@@ -17,6 +17,14 @@ public class OdjeljenjeStavka
 
     private int brojUDnevniku;
 
+    public OdjeljenjeStavka(Ucenik ucenik, Odjeljenje odjeljenje, int brojUDnevniku) {
+        this.ucenik = ucenik;
+        this.odjeljenje = odjeljenje;
+        this.brojUDnevniku = brojUDnevniku;
+    }
+
+    public OdjeljenjeStavka() {
+    }
 
     public int getId() {
         return id;

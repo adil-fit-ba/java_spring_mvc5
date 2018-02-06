@@ -15,6 +15,15 @@ public class Nastavnik
     @ManyToOne(optional = true)
     private KorisnickiNalog korisnickiNalog ;
 
+    public Nastavnik() {
+    }
+
+    public Nastavnik(String ime, String prezime) {
+
+        this.ime = ime;
+        this.prezime = prezime;
+    }
+
     public int getId() {
         return Id;
     }

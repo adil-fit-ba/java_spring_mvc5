@@ -17,6 +17,15 @@ public class KorisnickiNalog
 
     private String lozinka ;
 
+    public KorisnickiNalog() {
+    }
+
+    public KorisnickiNalog(String korisnickoIme, String lozinka) {
+
+        this.korisnickoIme = korisnickoIme;
+        this.lozinka = lozinka;
+    }
+
     public int getId() {
         return id;
     }
