@@ -21,8 +21,10 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="Entities" />
+          <factory-entry name="LOCAL_PERSISTENCE" />
           <factory-entry name="PersistenceNaziv" />
           <factory-entry name="geEntityManagerFactoryBean" />
+          <factory-entry name="getContainerEntityManagerFactoryBean" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>

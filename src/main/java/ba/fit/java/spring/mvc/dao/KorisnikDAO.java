@@ -8,11 +8,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-@Transactional(readOnly = false)
+@Transactional(readOnly = true)
 public class KorisnikDAO {
     @PersistenceContext
     EntityManager entityManager;
-
+    @Transactional
     public void saveUserDetail(KorisnickiNalog user){
         entityManager.persist(user);
         System.out.println("--Data Saved--");

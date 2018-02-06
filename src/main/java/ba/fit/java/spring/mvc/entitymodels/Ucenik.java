@@ -1,5 +1,7 @@
 package ba.fit.java.spring.mvc.entitymodels;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,6 +15,7 @@ public class Ucenik implements Serializable {
     private String prezime;
 
     @ManyToOne(optional = true)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private KorisnickiNalog korisnickiNalog;
 
     public Ucenik() {

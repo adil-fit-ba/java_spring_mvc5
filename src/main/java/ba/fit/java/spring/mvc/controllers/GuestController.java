@@ -20,6 +20,9 @@ public class GuestController {
     @Autowired
     private KorisnikDAO userDao;
 
+    @Autowired
+    private MojDBInitializer dbInitializer;
+
     @GetMapping("/")
     public String index(Model model) {
             model.addAttribute("message", "You are logged in as ");
@@ -32,10 +35,9 @@ public class GuestController {
         return "index";
     }
     @GetMapping("/TestDB")
-    @Transactional(readOnly = false)
     public String TestDB()
     {
-      //  MojDBInitializer.Izvrsi(_context);
+        dbInitializer.Izvrsi();
 
         userDao.saveUserDetail(new KorisnickiNalog("a", "b"));
 

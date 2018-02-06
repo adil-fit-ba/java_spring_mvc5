@@ -31,28 +31,18 @@ public class AppConfig {
         return viewResolver;
     }
 
-//    @Bean
-//    public LocalEntityManagerFactoryBean getEntityManagerFactoryBean() {
-//        LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
-//        factoryBean.setPersistenceUnitName("LOCAL_PERSISTENCE");
-//        return factoryBean;
-//    }
-
-
     @Bean
-    public LocalContainerEntityManagerFactoryBean getContainerEntityManagerFactoryBean() {
-        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+    public LocalEntityManagerFactoryBean getEntityManagerFactoryBean() {
+        LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
         factoryBean.setPersistenceUnitName("LOCAL_PERSISTENCE");
         return factoryBean;
     }
 
     @Bean
-    public JpaTransactionManager geJpaTransactionManager() {
+    public JpaTransactionManager getJpaTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(getContainerEntityManagerFactoryBean().getObject());
+        transactionManager.setEntityManagerFactory(getEntityManagerFactoryBean().getObject());
         return transactionManager;
     }
-
-
 
 }
