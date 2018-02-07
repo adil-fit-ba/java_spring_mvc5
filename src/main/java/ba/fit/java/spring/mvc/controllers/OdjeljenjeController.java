@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,14 +20,15 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
+@RequestMapping("Odjeljenje")
 @Controller
+
     public class OdjeljenjeController
     {
-
         @PersistenceContext
         private EntityManager em;
 
-        @GetMapping("/Odjeljenje/Index")
+        @RequestMapping("Index")
         public String Index(Model model)
         {
             OdjeljenjeIndexVM x = new OdjeljenjeIndexVM();
@@ -42,18 +44,19 @@ import static java.util.stream.Collectors.toList;
                                 row.razred=a.getRazred();
                                 row.razrednik = a.getRazrednik().getIme() + " " + a.getRazrednik().getPrezime();
                                 row.skolskaGodina = a.getSkolskaGodina();
-                                row.prosjekOcjena = em.createQuery("select avg(x) from DodjeljenPredmet  x where x.odjeljenjeStavka.odjeljenje.id  = :id", float.class)
-                                        .setParameter("id", a.getId())
-                                        .getSingleResult();
+//                                row.prosjekOcjena = em.createQuery("select avg(x) from DodjeljenPredmet  x where x.odjeljenjeStavka.odjeljenje.id  = :id", Double.class)
+//                                        .setParameter("id", a.getId())
+//                                        .getSingleResult();
                                 return row;
                             }
                     ).collect(toList());
 
-            model.addAttribute(x);
+            model.addAttribute("model", x);
 
             return "Odjeljenje/index";
         }
 
+        @RequestMapping("Obrisi")
         public String Obrisi(int id)
         {
 

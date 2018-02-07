@@ -15,5 +15,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/viewmodels/OdjeljenjeIndexVM.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/viewmodels/StavkeDodajVM.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/viewmodels/StavkeIndexVM.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Odjeljenje/index.jsp" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/js/jsFIT.js" charset="windows-1252" />
   </component>
 </project>

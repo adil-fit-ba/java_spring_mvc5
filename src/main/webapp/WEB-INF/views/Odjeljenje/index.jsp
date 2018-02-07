@@ -1,17 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>test.COM</title>
-</head>
-<body>
-	<h1>Spring MVC 5 + Spring Security 5 + Hibernate 5 example</h1>
-	<h2>ss</h2>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ page import="ba.fit.java.spring.mvc.viewmodels.OdjeljenjeIndexVM" %>
+<jsp:include page="/WEB-INF/views/shared/header.jsp"/>
+<h2>Index</h2>
+<%
+ OdjeljenjeIndexVM model = (OdjeljenjeIndexVM) request.getAttribute("model");
+%>
+<table class="table table-striped">
+	<thead>
+	<tr>
+		<th>Skolska godina</th>
+		<th>Razred(od 1 do 4)</th>
+		<th>Oznaka</th>
+		<th>Razrednik</th>
+		<th>Prebaceni u visi razred(odjeljenje)</th>
+		<th>Prosjek ocjena</th>
+		<th>Najbolji ucenik</th>
+		<th>Akcija</th>
+	</tr>
+	</thead>
+	<tbody>
 
-	<form action="/logout" method="post">
-		<input value="Logout" type="submit">
-	</form>
-</body>
-</html>
+	<% for (OdjeljenjeIndexVM.Row x : model.rows)
+	{%>
+	<tr>
+		<td><%= x.skolskaGodina %></td>
+		<td><%=x.razred%></td>
+		<td><%=x.oznaka%></td>
+		<td><%=x.razrednik%></td>
+		<td><%=(x.isPrebacenuViseOdjeljenje?"DA":"NE")%></td>
+		<td><%=String.format("%.2f", x.prosjekOcjena) %></td>
+		<td><%=x.najboljiUcenik%></td>
+		<td>
+			${spring:mvcUrl("/sad")}
+			<a href="/Odjeljenje/Detalji?id=<%= x.odjeljenjeId %>" class="btn btn-primary">Detalji</a>
+			<a href="/Odjeljenje/Obrisi?id=<%= x.odjeljenjeId %>" class="btn btn-danger">Obrisi</a>
+
+		</td>
+	</tr>
+	<%} %>
+
+	</tbody>
+</table>
+
+<a href="/Odjeljenje/Dodaj" class="btn btn-success">Dodaj</a>
+
+
+<jsp:include page="/WEB-INF/views/shared/footer.jsp"/>
