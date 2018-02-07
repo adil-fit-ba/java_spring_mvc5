@@ -32,7 +32,6 @@
 		<td><%=String.format("%.2f", x.prosjekOcjena) %></td>
 		<td><%=x.najboljiUcenik%></td>
 		<td>
-			${spring:mvcUrl("/sad")}
 			<a href="/Odjeljenje/Detalji?id=<%= x.odjeljenjeId %>" class="btn btn-primary">Detalji</a>
 			<a href="/Odjeljenje/Obrisi?id=<%= x.odjeljenjeId %>" class="btn btn-danger">Obrisi</a>
 

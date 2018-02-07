@@ -44,9 +44,9 @@ import static java.util.stream.Collectors.toList;
                                 row.razred=a.getRazred();
                                 row.razrednik = a.getRazrednik().getIme() + " " + a.getRazrednik().getPrezime();
                                 row.skolskaGodina = a.getSkolskaGodina();
-//                                row.prosjekOcjena = em.createQuery("select avg(x) from DodjeljenPredmet  x where x.odjeljenjeStavka.odjeljenje.id  = :id", Double.class)
-//                                        .setParameter("id", a.getId())
-//                                        .getSingleResult();
+                                row.prosjekOcjena = em.createQuery("select avg(x) from DodjeljenPredmet  x where x.odjeljenjeStavka.odjeljenje.id  = :id", Double.class)
+                                        .setParameter("id", a.getId())
+                                        .getSingleResult();
                                 return row;
                             }
                     ).collect(toList());

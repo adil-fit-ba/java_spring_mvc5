@@ -8,7 +8,7 @@ public class OdjeljenjeIndexVM
 
     public static class Row
     {
-        public double prosjekOcjena;
+        public Double prosjekOcjena;
 
         public String najboljiUcenik;
 
