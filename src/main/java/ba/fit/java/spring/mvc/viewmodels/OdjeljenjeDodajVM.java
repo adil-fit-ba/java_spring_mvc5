@@ -1,8 +1,9 @@
 package ba.fit.java.spring.mvc.viewmodels;
 
 
-import org.springframework.beans.factory.annotation.Required;
+import ba.fit.java.spring.mvc.helper.SelectListItem;
 
+import java.util.List;
 import java.util.Map;
 
 public class OdjeljenjeDodajVM
@@ -13,7 +14,7 @@ public class OdjeljenjeDodajVM
 
     public int odjeljenjeID;
 
-    public Map<String, String> odjeljenja;
+    public List<SelectListItem> odjeljenja;
 
     public String skolaGodina;
 
