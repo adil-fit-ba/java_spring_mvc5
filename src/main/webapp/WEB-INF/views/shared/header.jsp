@@ -40,9 +40,9 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a href="UcenikHome/Index">Ucenik home</a></li>
-                <li><a href="Odjeljenje/Index">Odjeljenja</a></li>
-                <li><a href="Autentifikacija/Logout">
+                <li><a href="ucenikHome/index">Ucenik home</a></li>
+                <li><a href="odjeljenje/index">Odjeljenja</a></li>
+                <li><a href="autentifikacija/logout">
                     <% if (korisnickiNalog != null)
                     {
                        out.print(korisnickiNalog.getKorisnickoIme() + " Logout");

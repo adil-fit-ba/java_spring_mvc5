@@ -11,7 +11,7 @@
 <body>
 <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
                    url = "jdbc:mysql://localhost/TEST"
-                   user = "root"  password = "pass123"/>
+                   user = "root"  password = "${headerValues}"/>
 
 <sql:query dataSource = "${snapshot}" var = "result">
     SELECT * from Employees;

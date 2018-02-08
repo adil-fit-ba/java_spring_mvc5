@@ -32,8 +32,8 @@
 		<td><%=String.format("%.2f", x.prosjekOcjena) %></td>
 		<td><%=x.najboljiUcenik%></td>
 		<td>
-			<a href="/Odjeljenje/Detalji?id=<%= x.odjeljenjeId %>" class="btn btn-primary">Detalji</a>
-			<a href="/Odjeljenje/Obrisi?id=<%= x.odjeljenjeId %>" class="btn btn-danger">Obrisi</a>
+			<a href="/odjeljenje/detalji?id=<%= x.odjeljenjeId %>" class="btn btn-primary">Detalji</a>
+			<a href="/odjeljenje/obrisi?id=<%= x.odjeljenjeId %>" class="btn btn-danger">Obrisi</a>
 
 		</td>
 	</tr>
@@ -42,7 +42,7 @@
 	</tbody>
 </table>
 
-<a href="/Odjeljenje/Dodaj" class="btn btn-success">Dodaj</a>
+<a href="/odjeljenje/dodaj" class="btn btn-success">Dodaj</a>
 
 
 <jsp:include page="/WEB-INF/views/shared/footer.jsp"/>
