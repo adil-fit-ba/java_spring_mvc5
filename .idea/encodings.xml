@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/config/HelloWorldInitializer.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/controllers/GuestController.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/controllers/OdjeljenjeController.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/controllers/StavkeAjaxController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/entitymodels/DodjeljenPredmet.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/entitymodels/KorisnickiNalog.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/entitymodels/Nastavnik.java" charset="ISO-8859-1" />

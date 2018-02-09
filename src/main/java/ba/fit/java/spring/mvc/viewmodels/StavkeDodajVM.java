@@ -1,10 +1,11 @@
 package ba.fit.java.spring.mvc.viewmodels;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Map;
 
 public class StavkeDodajVM
 {
-    public Map<String, String> ucenici;
+    public Map<Integer, String> ucenici;
 
     public int odjeljenjeID;
 

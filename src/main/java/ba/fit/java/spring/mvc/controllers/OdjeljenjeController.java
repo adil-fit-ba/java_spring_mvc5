@@ -7,10 +7,10 @@ import ba.fit.java.spring.mvc.viewmodels.OdjeljenjeIndexVM;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,13 +30,13 @@ import static java.util.stream.Collectors.toList;
         private EntityManager em;
 
         @RequestMapping(value = "/index")
-        public String index(Model model)
+        public ModelAndView index()
         {
-            OdjeljenjeIndexVM x = new OdjeljenjeIndexVM();
+            OdjeljenjeIndexVM model = new OdjeljenjeIndexVM();
 
             List<Odjeljenje> odjeljenja = em.createQuery("select x from Odjeljenje x", Odjeljenje.class).getResultList();
 
-            x.rows = odjeljenja.stream().map(
+            model.rows = odjeljenja.stream().map(
                             a -> {
                                 OdjeljenjeIndexVM.Row row = new OdjeljenjeIndexVM.Row();
                                 row.isPrebacenuViseOdjeljenje = a.isPrebacenuViseOdjeljenje();
@@ -52,11 +52,8 @@ import static java.util.stream.Collectors.toList;
                             }
                     ).collect(toList());
 
-            model.addAttribute("model", x);
-
-            return "odjeljenje/index";
+            return new ModelAndView("odjeljenje/index", "model", model);
         }
-
 
         @Transactional
         @RequestMapping("obrisi")
@@ -66,6 +63,7 @@ import static java.util.stream.Collectors.toList;
             em.remove(x);
             return "redirect:/odjeljenje/index";
         }
+
         @RequestMapping("/provjeri-oznaku")
         @ResponseBody
         public String provjeriOznaku(String oznaka, String skolaGodina)
@@ -82,18 +80,17 @@ import static java.util.stream.Collectors.toList;
 
 
         @RequestMapping(value = "/dodaj")
-        public String dodaj(Model model, HttpServletRequest request, HttpServletResponse response)
+        public ModelAndView dodaj(HttpServletRequest request, HttpServletResponse response)
         {
-            OdjeljenjeDodajVM x = new OdjeljenjeDodajVM();
+            OdjeljenjeDodajVM model = new OdjeljenjeDodajVM();
 
             KorisnickiNalog logiraniKorisnik = (KorisnickiNalog) request.getSession().getAttribute("logiraniKorisnik");
             if (logiraniKorisnik != null)
-                x.nastavnik = logiraniKorisnik.getKorisnickoIme();
+                model.nastavnik = logiraniKorisnik.getKorisnickoIme();
 
-            pripremiCmbStavke(x);
-            model.addAttribute("model", x);
+            pripremiCmbStavke(model);
 
-            return "odjeljenje/dodaj";
+            return new ModelAndView("odjeljenje/dodaj", "model", model);
         }
         @Transactional
         @RequestMapping(value = "/snimi")
@@ -106,11 +103,14 @@ import static java.util.stream.Collectors.toList;
 //                return View("Dodaj", input);
 //            }
 
-
-
-            Nastavnik nastavnik = em.createQuery("select x from Nastavnik x where x.korisnickiNalog.id = :korisnikId", Nastavnik.class)
-                    .setParameter("korisnikId", 2)
+            Nastavnik nastavnik = em.createQuery("select  x from Nastavnik x", Nastavnik.class)
+                    .setMaxResults(1)
                     .getSingleResult();
+
+
+//            Nastavnik nastavnik = em.createQuery("select x from Nastavnik x where x.korisnickiNalog.id = :korisnikId", Nastavnik.class)
+//                    .setParameter("korisnikId", 2)
+//                    .getSingleResult();
 
             Odjeljenje o2 = new Odjeljenje(input.skolaGodina, input.razred, input.oznaka, nastavnik);
             em.persist(o2);
@@ -128,9 +128,9 @@ import static java.util.stream.Collectors.toList;
 
                 for (OdjeljenjeStavka s1 : s1s)
                 {
-                    long brojNegativnihOcjena = em.createQuery("select count(x) from DodjeljenPredmet x where x.odjeljenjeStavka.id = :s1Id", Long.class)
+                    int brojNegativnihOcjena = em.createQuery("select count(x) from DodjeljenPredmet x where x.odjeljenjeStavka.id = :s1Id")
                             .setParameter("s1Id", s1.getId())
-                            .getSingleResult().longValue();
+                            .getFirstResult();
 
                     if (brojNegativnihOcjena == 0)
                     {
@@ -153,30 +153,27 @@ import static java.util.stream.Collectors.toList;
         }
 
         @RequestMapping(value = "/detalji")
-        public String detalji(Model model, int id)
+        public ModelAndView detalji(int id)
         {
-
             Odjeljenje o = em.find(Odjeljenje.class, id);
 
-            OdjeljenjeDetaljiVM m = new OdjeljenjeDetaljiVM();
+            OdjeljenjeDetaljiVM model = new OdjeljenjeDetaljiVM();
 
-            m.razrednik = o.getRazrednik().getIme() + " " + o.getRazrednik().getPrezime();
-            m.oznaka = o.getOznaka();
-            m.razred = o.getRazred();
-            m.skolskaGodina = o.getSkolskaGodina();
-            m.odjeljenjeID = o.getId();
+            model.razrednik = o.getRazrednik().getIme() + " " + o.getRazrednik().getPrezime();
+            model.oznaka = o.getOznaka();
+            model.razred = o.getRazred();
+            model.skolskaGodina = o.getSkolskaGodina();
+            model.odjeljenjeID = o.getId();
 
-            m.brojPredmta = em.createQuery("select count(x) from Predmet  x where x.razred = :razred", Long.class)
+            model.brojPredmta = em.createQuery("select count(x) from Predmet  x where x.razred = :razred")
                     .setParameter("razred", o.getRazred())
-                    .getSingleResult().intValue();
+                    .getFirstResult();
 
-            m.brojUcenika = em.createQuery("select count(x) from OdjeljenjeStavka  x where x.odjeljenje.id = :id", Long.class)
+            model.brojUcenika = em.createQuery("select count(x) from OdjeljenjeStavka  x where x.odjeljenje.id = :id")
                     .setParameter("id", id)
-                    .getSingleResult().intValue();
+                    .getFirstResult();
 
-
-            model.addAttribute("model", m);
-            return "odjeljenje/detalji";
+            return new ModelAndView("odjeljenje/detalji", "model", model);
         }
 
 
