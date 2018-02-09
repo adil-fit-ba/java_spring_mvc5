@@ -1,19 +1,35 @@
-﻿
+﻿<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%--@elvariable id="model" type="ba.fit.java.spring.mvc.viewmodels.StavkeDodajVM"--%>
 
 <h2>Dodaj novog učenika</h2>
 
-<form asp-action="Snimi" ajax-rezultat="nekiID" ajax-poziv="da">
-    <input type="hidden" value="@Model.OdjeljenjeID" name="OdjeljenjeID" />
-    <input type="hidden" value="@Model.OdjeljenjeStavkaId" name="OdjeljenjeStavkaId" />
-    <input type="text" value="@Model.BrojUdnevniku" name="BrojUdnevniku" />
-    <br />
-    @MyMvc.dropdown("UcenikID", Model.ucenici, Model.UcenikID, "")
-    <br />
+
+<form:form method="POST" action="/stavke-ajax/snimi" modelAttribute="model" ajax-rezultat="nekiID" ajax-poziv="da">
+    <form:input type="hidden" path="odjeljenjeID"  />
+    <form:input type="hidden" path="odjeljenjeStavkaId"  />
+
+    <div class="form-group">
+        <label>Broj u dnevniku: </label>
+        <div>
+            <form:input type="text" path="brojUdnevniku" class="form-control" />
+            <span class="text-danger field-validation-valid" data-valmsg-for="skolaGodina" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Učenik: </label>
+        <div>
+            <form:select path="ucenikID" >
+                <form:option value="0"> ---SELECT---</form:option>
+                <form:options items="${model.ucenici}"/>
+            </form:select>
+        </div>
+    </div>
+
+
     <input id="submitButton" type="submit" value="Snimi" />
-</form>
-
-
-
+</form:form>
 <script>
      
 </script>

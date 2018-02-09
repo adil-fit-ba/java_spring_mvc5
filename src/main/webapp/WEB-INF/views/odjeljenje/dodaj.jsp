@@ -11,7 +11,7 @@
 <h2>Dodaj</h2>
 
 
-<form:form method="POST" action="/odjeljenje/snimi" modelAttribute="model">
+<form:form method="POST" action="/odjeljenje/snimi" modelAttribute="model" >
 
     <div class="form-group">
         <label>Školska godina: </label>
