@@ -20,7 +20,7 @@
     <div class="form-group">
         <label>Učenik: </label>
         <div>
-            <form:select path="ucenikID" >
+            <form:select path="ucenikID"  class="form-control" >
                 <form:option value="0"> ---SELECT---</form:option>
                 <form:options items="${model.ucenici}"/>
             </form:select>
@@ -28,7 +28,7 @@
     </div>
 
 
-    <input id="submitButton" type="submit" value="Snimi" />
+    <input id="submitButton" type="submit" value="Snimi"   class="form-control btn btn-danger"/>
 </form:form>
 <script>
      

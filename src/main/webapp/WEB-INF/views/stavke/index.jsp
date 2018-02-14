@@ -1,5 +1,5 @@
 ﻿<%@ page import="ba.fit.java.spring.mvc.viewmodels.StavkeIndexVM" %>
-<%--@elvariable id="xy" type="ba.fit.java.spring.mvc.viewmodels.StavkeIndexVM"--%>
+<%--@elvariable id="model" type="ba.fit.java.spring.mvc.viewmodels.StavkeIndexVM"--%>
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,7 +16,7 @@
     </tr>
     </thead>
     <tbody>
-        <c:forEach items="${xy.rows}" var="x">
+        <c:forEach items="${model.rows}" var="x">
             <tr>
                 <td>${x.brojUDnevniku}</td>
                 <td>${x.ucenik}</td>
@@ -31,7 +31,7 @@
     </tbody>
 </table>
 
-Ukupno ${xy.rows.size()}
+Ukupno ${model.rows.size()}
 
-<a href="/stavke-ajax/dodaj?odjeljenjeId=${xy.odjeljenjeId}" class="btn btn-danger" ajax-poziv="da" ajax-rezultat="nekiID">Dodaj</a>
+<a href="/stavke-ajax/dodaj?odjeljenjeId=${model.odjeljenjeId}" class="btn btn-danger" ajax-poziv="da" ajax-rezultat="nekiID">Dodaj</a>
 

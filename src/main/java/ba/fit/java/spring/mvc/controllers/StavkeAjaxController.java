@@ -44,7 +44,7 @@ import static java.util.stream.Collectors.toList;
                     return row;
                 }).collect(toList());
 
-        return new ModelAndView("stavke/index", "xy", model);
+        return new ModelAndView("stavke/index", "model", model);
     }
 
     @RequestMapping(value = "/obrisi")
@@ -99,7 +99,7 @@ import static java.util.stream.Collectors.toList;
 
     @RequestMapping(value = "/snimi")
     @Transactional
-    public String snimi(@ModelAttribute("model") StavkeDodajVM input)
+    public ModelAndView snimi(@ModelAttribute("model") StavkeDodajVM input)
     {
         OdjeljenjeStavka x;
 
@@ -119,6 +119,6 @@ import static java.util.stream.Collectors.toList;
         if (input.odjeljenjeStavkaId == 0)
             em.persist(x);
 
-        return "redirect:/stavke-ajax/index?odjeljenjeId=" + input.odjeljenjeID;
+        return new ModelAndView("redirect:/stavke-ajax/index?odjeljenjeId=" + input.odjeljenjeID);
     }
 }

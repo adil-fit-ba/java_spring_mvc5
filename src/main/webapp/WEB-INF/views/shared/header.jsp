@@ -35,18 +35,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Glavni modul</a>
+            <a href="/" class="navbar-brand">Glavni modul</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a href="ucenikHome/index">Ucenik home</a></li>
-                <li><a href="odjeljenje/index">Odjeljenja</a></li>
-                <li><a href="autentifikacija/logout">
+                <li><a href="/">Home</a></li>
+                <li><a href="/ucenikHome/index">Ucenik home</a></li>
+                <li><a href="/odjeljenje/index">Odjeljenja</a></li>
+                <li><a href="/autentifikacija/logout">
                     <% if (korisnickiNalog != null)
                     {
                        out.print(korisnickiNalog.getKorisnickoIme() + " Logout");
-
                     }
                     else
                     {
@@ -54,7 +53,7 @@
                     }
                     %>
                 </a></li>
-                <li><a href="Sesija/Index">Aktivne sesije</a></li>
+                <li><a href="/sesija/index">Aktivne sesije</a></li>
             </ul>
         </div>
     </div>

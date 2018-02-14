@@ -25,6 +25,7 @@
           <factory-entry name="PersistenceNaziv" />
           <factory-entry name="geEntityManagerFactoryBean" />
           <factory-entry name="getContainerEntityManagerFactoryBean" />
+          <factory-entry name="getEntityManagerFactoryBean" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>

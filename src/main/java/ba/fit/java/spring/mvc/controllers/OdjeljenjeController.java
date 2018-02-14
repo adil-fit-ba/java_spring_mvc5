@@ -57,11 +57,11 @@ import static java.util.stream.Collectors.toList;
 
         @Transactional
         @RequestMapping("obrisi")
-        public String obrisi(int id)
+        public ModelAndView obrisi(int id)
         {
             Odjeljenje x = em.find(Odjeljenje.class, id);
             em.remove(x);
-            return "redirect:/odjeljenje/index";
+            return new ModelAndView("redirect:/odjeljenje/index");
         }
 
         @RequestMapping("/provjeri-oznaku")
@@ -94,7 +94,7 @@ import static java.util.stream.Collectors.toList;
         }
         @Transactional
         @RequestMapping(value = "/snimi")
-        public String snimi(@ModelAttribute("model") OdjeljenjeDodajVM input)
+        public ModelAndView snimi(@ModelAttribute("model") OdjeljenjeDodajVM input)
         {
 
 //            if (!ModelState.IsValid)
@@ -149,7 +149,7 @@ import static java.util.stream.Collectors.toList;
                 }
             }
 
-            return "redirect:/odjeljenje/index";
+            return new ModelAndView("redirect:/odjeljenje/index");
         }
 
         @RequestMapping(value = "/detalji")
