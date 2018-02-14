@@ -1,11 +1,14 @@
 <%@ page import="ba.fit.java.spring.mvc.entitymodels.KorisnickiNalog" %>
 
-<% KorisnickiNalog korisnickiNalog = (KorisnickiNalog) session.getAttribute("logiraniKorisnik"); %>
+
+
+
+<% KorisnickiNalog korisnickiNalog = (KorisnickiNalog) session.getAttribute("korisnik"); %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
     <title>Ispit.Web</title>
 
     <%--css--%>
@@ -40,7 +43,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
-                <li><a href="/ucenikHome/index">Ucenik home</a></li>
+                <li><a href="/ucenik-home/index">Ucenik home</a></li>
                 <li><a href="/odjeljenje/index">Odjeljenja</a></li>
                 <li><a href="/autentifikacija/logout">
                     <% if (korisnickiNalog != null)

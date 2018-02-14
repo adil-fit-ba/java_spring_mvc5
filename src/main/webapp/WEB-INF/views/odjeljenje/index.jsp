@@ -2,10 +2,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page import="ba.fit.java.spring.mvc.viewmodels.OdjeljenjeIndexVM" %>
 <jsp:include page="/WEB-INF/views/shared/header.jsp"/>
+
+
 <h2>Index</h2>
 <%
  OdjeljenjeIndexVM model = (OdjeljenjeIndexVM) request.getAttribute("model");
 %>
+<h2>odjeljenje/index</h2>
+<h3>Dobro dosao nastanvik</h3>
+
 <table class="table table-striped">
 	<thead>
 	<tr>

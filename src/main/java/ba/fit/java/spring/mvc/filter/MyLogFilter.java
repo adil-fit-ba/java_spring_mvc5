@@ -9,7 +9,7 @@ import java.util.*;
 
 // Implements Filter class
 @WebFilter(urlPatterns = {"/*"}, description = "Session Checker Filter")
-public class LogFilter implements Filter  {
+public class MyLogFilter implements Filter  {
     private FilterConfig config = null;
 
     public void init(FilterConfig config) throws ServletException {
@@ -36,6 +36,8 @@ public class LogFilter implements Filter  {
         System.out.println("IP "+ ipAddress + ", Time "+ new Date().toString());
 
         // Pass request back down the filter chain
+//        response.setCharacterEncoding("UTF-8");
+//        response.setContentType("text/html; charset=UTF-8");
         chain.doFilter(request,response);
     }
 

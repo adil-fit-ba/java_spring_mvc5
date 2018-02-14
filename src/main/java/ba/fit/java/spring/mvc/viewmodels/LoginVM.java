@@ -3,7 +3,14 @@ package ba.fit.java.spring.mvc.viewmodels;
 public class LoginVM {
     public String username;
     public String password;
-    public boolean ZapamtiPassword;
+
+    public LoginVM(String username, String password, boolean zapamtiPassword) {
+        this.username = username;
+        this.password = password;
+        this.zapamtiPassword = zapamtiPassword;
+    }
+
+    public boolean zapamtiPassword;
 
     public String getUsername() {
         return username;
@@ -22,10 +29,10 @@ public class LoginVM {
     }
 
     public boolean isZapamtiPassword() {
-        return ZapamtiPassword;
+        return zapamtiPassword;
     }
 
     public void setZapamtiPassword(boolean zapamtiPassword) {
-        ZapamtiPassword = zapamtiPassword;
+        this.zapamtiPassword = zapamtiPassword;
     }
 }

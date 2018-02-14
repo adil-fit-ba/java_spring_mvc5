@@ -1,5 +1,6 @@
 ﻿<%--@elvariable id="model" type="ba.fit.java.spring.mvc.viewmodels.OdjeljenjeDodajVM"--%>
 
+
 <jsp:include page="/WEB-INF/views/shared/header.jsp"/>
 
 <%@ page import="ba.fit.java.spring.mvc.viewmodels.OdjeljenjeDodajVM" %>

@@ -1,6 +1,7 @@
-package ba.fit.java.spring.mvc.controllers;
+package ba.fit.java.spring.mvc.controllers.nastavnik;
 
 import ba.fit.java.spring.mvc.entitymodels.*;
+import ba.fit.java.spring.mvc.filter.MyAutorizationAttribute;
 import ba.fit.java.spring.mvc.viewmodels.OdjeljenjeDetaljiVM;
 import ba.fit.java.spring.mvc.viewmodels.OdjeljenjeDodajVM;
 import ba.fit.java.spring.mvc.viewmodels.OdjeljenjeIndexVM;
@@ -22,6 +23,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @RequestMapping("/odjeljenje")
+@MyAutorizationAttribute(isNastavnik = true, isUcenik = false)
 @Controller
 
     public class OdjeljenjeController
@@ -68,10 +70,10 @@ import static java.util.stream.Collectors.toList;
         @ResponseBody
         public String provjeriOznaku(String oznaka, String skolaGodina)
         {
-            int c = em.createQuery("select count(x) from Odjeljenje x where x.oznaka = :oznaka and x.skolskaGodina = :skolaGodina")
+            Long c = em.createQuery("select count(x) from Odjeljenje x where x.oznaka = :oznaka and x.skolskaGodina = :skolaGodina", Long.class)
                     .setParameter("oznaka", oznaka)
                     .setParameter("skolaGodina", skolaGodina)
-                    .getFirstResult();
+                    .getSingleResult();
             if (c>0)
                 return JSONObject.quote( "Oznaka " + oznaka + " je zauzeta za ?k. godinu " + skolaGodina);
 
@@ -94,7 +96,7 @@ import static java.util.stream.Collectors.toList;
         }
         @Transactional
         @RequestMapping(value = "/snimi")
-        public ModelAndView snimi(@ModelAttribute("model") OdjeljenjeDodajVM input)
+        public ModelAndView snimi(@ModelAttribute("model") OdjeljenjeDodajVM input,  HttpServletRequest request)
         {
 
 //            if (!ModelState.IsValid)
@@ -103,14 +105,12 @@ import static java.util.stream.Collectors.toList;
 //                return View("Dodaj", input);
 //            }
 
-            Nastavnik nastavnik = em.createQuery("select  x from Nastavnik x", Nastavnik.class)
-                    .setMaxResults(1)
+            KorisnickiNalog korisnik = (KorisnickiNalog) request.getSession(true).getAttribute("korisnik");
+
+
+            Nastavnik nastavnik = em.createQuery("select x from Nastavnik x where x.korisnickiNalog.id = :korisnikId", Nastavnik.class)
+                    .setParameter("korisnikId", korisnik.getId())
                     .getSingleResult();
-
-
-//            Nastavnik nastavnik = em.createQuery("select x from Nastavnik x where x.korisnickiNalog.id = :korisnikId", Nastavnik.class)
-//                    .setParameter("korisnikId", 2)
-//                    .getSingleResult();
 
             Odjeljenje o2 = new Odjeljenje(input.skolaGodina, input.razred, input.oznaka, nastavnik);
             em.persist(o2);

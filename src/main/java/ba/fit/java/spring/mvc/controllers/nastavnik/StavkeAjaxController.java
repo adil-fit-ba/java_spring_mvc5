@@ -1,4 +1,4 @@
-package ba.fit.java.spring.mvc.controllers;
+package ba.fit.java.spring.mvc.controllers.nastavnik;
 
 import ba.fit.java.spring.mvc.entitymodels.DodjeljenPredmet;
 import ba.fit.java.spring.mvc.entitymodels.Odjeljenje;

@@ -1,5 +1,6 @@
 ﻿<jsp:include page="/WEB-INF/views/shared/header.jsp"/>
 
+
 <%--@elvariable id="model" type="ba.fit.java.spring.mvc.viewmodels.OdjeljenjeDetaljiVM"--%>
 
 <h2>Detalji</h2>

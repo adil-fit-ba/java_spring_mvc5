@@ -1,6 +1,7 @@
 <jsp:include page="/WEB-INF/views/shared/header.jsp"/>
 
 
+
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--@elvariable id="model" type="ba.fit.java.spring.mvc.viewmodels.LoginVM"--%>
 
@@ -21,7 +22,7 @@
         <div class="form-group">
             <label>Password: </label>
             <div>
-                <form:input path="password" class="form-control" data-val="true" data-val-length="Password mora sadr&#x17E;avati mininalno 4 karaktera." data-val-length-max="100" data-val-length-min="4" />
+                <form:password path="password" class="form-control" data-val="true" data-val-length="Password mora sadr&#x17E;avati mininalno 4 karaktera." data-val-length-max="100" data-val-length-min="4" />
                 <span asp-validation-for="password" class="text-danger"></span>
             </div>
         </div>
