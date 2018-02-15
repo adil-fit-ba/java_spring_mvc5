@@ -1,6 +1,7 @@
 package ba.fit.java.spring.mvc.filter;
 
 import ba.fit.java.spring.mvc.entitymodels.KorisnickiNalog;
+import ba.fit.java.spring.mvc.helper.Autentifikacija;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -31,7 +32,7 @@ public class MySessionManager extends HandlerInterceptorAdapter {
             return true;
 
 
-        KorisnickiNalog korisnik = (KorisnickiNalog) request.getSession(true).getAttribute("korisnik");
+        KorisnickiNalog korisnik = Autentifikacija.getLogiraniKorisnik(request);
 
         boolean imaPravoPristupa = false;
         if (korisnik != null) {
@@ -61,7 +62,9 @@ public class MySessionManager extends HandlerInterceptorAdapter {
                 if (c>0)
                     imaPravoPristupa = true;
             }
+            em.close();
         }
+
 
         if (!imaPravoPristupa) {
             response.sendRedirect("/autentifikacija/login");

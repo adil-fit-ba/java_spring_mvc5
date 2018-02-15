@@ -1,9 +1,8 @@
 <%@ page import="ba.fit.java.spring.mvc.entitymodels.KorisnickiNalog" %>
+<%@ page import="ba.fit.java.spring.mvc.helper.Autentifikacija" %>
 
 
-
-
-<% KorisnickiNalog korisnickiNalog = (KorisnickiNalog) session.getAttribute("korisnik"); %>
+<% /*KorisnickiNalog korisnickiNalog = Autentifikacija.getLogiraniKorisnik(request);*/ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,14 +45,14 @@
                 <li><a href="/ucenik-home/index">Ucenik home</a></li>
                 <li><a href="/odjeljenje/index">Odjeljenja</a></li>
                 <li><a href="/autentifikacija/logout">
-                    <% if (korisnickiNalog != null)
-                    {
-                       out.print(korisnickiNalog.getKorisnickoIme() + " Logout");
-                    }
-                    else
-                    {
-                        out.print("Login");
-                    }
+                    <%--<% if (korisnickiNalog != null)--%>
+                    <%--{--%>
+                       <%--out.print(korisnickiNalog.getKorisnickoIme() + " Logout");--%>
+                    <%--}--%>
+                    <%--else--%>
+                    <%--{--%>
+                        <%--out.print("Login");--%>
+                    <%--}--%>
                     %>
                 </a></li>
                 <li><a href="/sesija/index">Aktivne sesije</a></li>

@@ -1,6 +1,7 @@
 package ba.fit.java.spring.mvc.controllers;
 
 import ba.fit.java.spring.mvc.entitymodels.*;
+import ba.fit.java.spring.mvc.helper.Autentifikacija;
 import ba.fit.java.spring.mvc.viewmodels.LoginVM;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RequestMapping("/autentifikacija")
@@ -24,9 +26,9 @@ import java.util.List;
     private EntityManager em;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView index(HttpServletRequest request)
+    public ModelAndView index(HttpServletRequest request, HttpServletResponse response)
     {
-        request.getSession(true).setAttribute("logirani", null);
+        Autentifikacija.setLogiraniKorisnik(request, response, null);
 
         LoginVM model = new LoginVM("nastavnik0", "test", true);
 
@@ -34,7 +36,7 @@ import java.util.List;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(@ModelAttribute("model") LoginVM input,  BindingResult result, HttpServletRequest request)
+    public ModelAndView login(@ModelAttribute("model") LoginVM input,  BindingResult result, HttpServletRequest request, HttpServletResponse response)
     {
         if (result.hasErrors())
             return new ModelAndView("autentifikacija/login", "model", input);
@@ -50,15 +52,15 @@ import java.util.List;
 
         KorisnickiNalog korisnik  = resultList.get(0);
 
-        request.getSession(true).setAttribute("korisnik", korisnik);
+       Autentifikacija.setLogiraniKorisnik(request, response, korisnik);
 
         return new ModelAndView("redirect:/");
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ModelAndView logout(HttpServletRequest request)
+    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response)
     {
-        request.getSession(true).setAttribute("korisnik", null);
+       Autentifikacija.setLogiraniKorisnik(request, response, null);
         return new ModelAndView("redirect:/autentifikacija/login");
     }
 }

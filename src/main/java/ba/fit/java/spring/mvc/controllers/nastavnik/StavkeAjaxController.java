@@ -87,7 +87,7 @@ import static java.util.stream.Collectors.toList;
     public ModelAndView dodaj(int odjeljenjeId)
     {
         StavkeDodajVM model = new StavkeDodajVM();
-        model.brojUdnevniku = em.createQuery("select count(x) from OdjeljenjeStavka x where x.odjeljenje.id = :odjeljenjeId").setParameter("odjeljenjeId", odjeljenjeId).getFirstResult() + 1;
+        model.brojUdnevniku = em.createQuery("select count(x) from OdjeljenjeStavka x where x.odjeljenje.id = :odjeljenjeId", Long.class).setParameter("odjeljenjeId", odjeljenjeId).getSingleResult().intValue() + 1;
         model.odjeljenjeID = odjeljenjeId;
         model.ucenikID = 0;
 

@@ -2,6 +2,7 @@ package ba.fit.java.spring.mvc.controllers.nastavnik;
 
 import ba.fit.java.spring.mvc.entitymodels.*;
 import ba.fit.java.spring.mvc.filter.MyAutorizationAttribute;
+import ba.fit.java.spring.mvc.helper.Autentifikacija;
 import ba.fit.java.spring.mvc.viewmodels.OdjeljenjeDetaljiVM;
 import ba.fit.java.spring.mvc.viewmodels.OdjeljenjeDodajVM;
 import ba.fit.java.spring.mvc.viewmodels.OdjeljenjeIndexVM;
@@ -86,7 +87,7 @@ import static java.util.stream.Collectors.toList;
         {
             OdjeljenjeDodajVM model = new OdjeljenjeDodajVM();
 
-            KorisnickiNalog logiraniKorisnik = (KorisnickiNalog) request.getSession().getAttribute("logiraniKorisnik");
+            KorisnickiNalog logiraniKorisnik = Autentifikacija.getLogiraniKorisnik(request);
             if (logiraniKorisnik != null)
                 model.nastavnik = logiraniKorisnik.getKorisnickoIme();
 
@@ -105,7 +106,7 @@ import static java.util.stream.Collectors.toList;
 //                return View("Dodaj", input);
 //            }
 
-            KorisnickiNalog korisnik = (KorisnickiNalog) request.getSession(true).getAttribute("korisnik");
+            KorisnickiNalog korisnik = Autentifikacija.getLogiraniKorisnik(request);
 
 
             Nastavnik nastavnik = em.createQuery("select x from Nastavnik x where x.korisnickiNalog.id = :korisnikId", Nastavnik.class)
