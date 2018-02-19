@@ -81,6 +81,7 @@ public class Autentifikacija {
         request.getSession(true).setAttribute("logirani", value);
 
         Cookie ck=new Cookie("token",value);//creating cookie object
+        ck.setPath("/");
         ck.setMaxAge(60*60*24);
         ck.setMaxAge(60*60*24);
         response.addCookie(ck);//adding cookie in the response
