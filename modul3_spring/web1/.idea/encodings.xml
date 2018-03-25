@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/config/HelloWorldInitializer.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/controllers/HomeController.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/controllers/SesijaController.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/controllers/nastavnik/OdjeljenjeController.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/controllers/nastavnik/StavkeAjaxController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/controllers/ucenik/UcenikHomeController.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/entitymodels/DodjeljenPredmet.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/entitymodels/KorisnickiNalog.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/entitymodels/Nastavnik.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/entitymodels/Odjeljenje.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/entitymodels/Ucenik.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/viewmodels/OdjeljenjeDetaljiVM.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/viewmodels/OdjeljenjeDodajVM.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/viewmodels/OdjeljenjeIndexVM.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/viewmodels/StavkeDodajVM.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ba/fit/java/spring/mvc/viewmodels/StavkeIndexVM.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home/index.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/odjeljenje/index.jsp" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/shared/header.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ucenik_home/index.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/js/jsFIT.js" charset="windows-1252" />
+  </component>
+</project>
