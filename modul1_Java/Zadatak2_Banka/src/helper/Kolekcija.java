@@ -24,7 +24,7 @@ public class Kolekcija<T>
         k.ForEach((Action1Param<T>) x -> Dodaj(x));
     }
 
-    public final Kolekcija Filter(Func1Param<T, Boolean> f)
+    public final Kolekcija Filter(Func1Param<T> f)
     {
         Kolekcija newK = new Kolekcija();
 

@@ -1,7 +1,7 @@
 package helper;
 
 @FunctionalInterface
-public interface Func1Param<T, TResult>
+public interface Func1Param<T>
 {
-    TResult invoke(T t);
+    boolean invoke(T t);
 }
