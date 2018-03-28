@@ -27,7 +27,7 @@ public class Main {
         System.out.print("\n");
         System.out.print("4. Dodaj Isplatu");
         System.out.print("\n");
-        System.out.print("5. Stanje na računu");
+        System.out.print("5. Stanje na racunu");
         System.out.print("\n");
         System.out.print("6. Pretraga po min. iznosu transakcije");
         System.out.print("\n");
