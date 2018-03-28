@@ -21,13 +21,13 @@
     </build>
 
     <dependencies>
-
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.2.16.Final</version>
+            <version>5.2.15.Final</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
         <dependency>
