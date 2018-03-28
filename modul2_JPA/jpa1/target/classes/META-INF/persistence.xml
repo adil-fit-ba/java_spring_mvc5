@@ -1,0 +1,25 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+
+    <persistence-unit name="MojaOznaka1" transaction-type="RESOURCE_LOCAL">
+
+        <properties>
+            <!-- Podaci o bazi podataka -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=imeBaze2" />
+            <property name="javax.persistence.jdbc.user" value="sa" />
+            <property name="javax.persistence.jdbc.password" value="test" />
+            <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
+
+            <!-- Ispis SQL koda u konzolu -->
+            <property name="hibernate.show_sql" value="true" />
+
+            <!-- formatiranje SQL koda ispisanog u konzolni prozor -->
+            <property name="hibernate.format_sql" value="false" />
+
+            <!-- Vrijednost "update" kreira tabele ako nepostoje -->
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+
+        </properties>
+    </persistence-unit>
+</persistence>
