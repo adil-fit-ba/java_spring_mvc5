@@ -22,6 +22,13 @@ public class Kolekcija<T>
     public final void Dodaj(Kolekcija k)
     {
         k.ForEach((Action1Param<T>) x -> Dodaj(x));
+
+        k.ForEach(new Action1Param<T>() {
+            @Override
+            public void invoke(T x) {
+                Dodaj(x);
+            }
+        });
     }
 
     public final Kolekcija Filter(Func1Param<T> f)
