@@ -14,6 +14,16 @@ public class Predmet {
     private int id;
     private String naziv;
 
+    public String getEcts() {
+        return ects;
+    }
+
+    public void setEcts(String ects) {
+        this.ects = ects;
+    }
+
+    private String ects;
+
     public int getId() {
         return id;
     }

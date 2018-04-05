@@ -29,10 +29,14 @@ public class Program {
         predmet.setNaziv("PR3");
 
 
-        em.getTransaction().begin();
-        em.persist(predmet);
-        em.getTransaction().commit();
-
+     try {
+         em.getTransaction().begin();
+         em.persist(predmet);
+         em.getTransaction().commit();
+     }catch (Exception e)
+     {
+         em.getTransaction().rollback();
+     }
         em.close();
 
     }
@@ -42,13 +46,13 @@ public class Program {
 
         EntityManager em = emf.createEntityManager();
 
-        List<Ocjena> podaci = em.createQuery("select x from Ocjena x", Ocjena.class).getResultList();
+        List<Object[]> podaci = em.createQuery("select x.id, x. ocjenaBrojcano, x.ocjenaOpis, x.datum, x.predmet.naziv from Ocjena x", Object[].class).getResultList();
 
-        for (Ocjena x : podaci) {
+        for (Object[] x : podaci) {
 
-            System.out.println("getOcjenaBrojcano" + x.getOcjenaBrojcano());
-            System.out.println("getOcjenaOpis" + x.getOcjenaOpis());
-            System.out.println("getDatum" + x.getDatum());
+            System.out.println("id" + x[0]);
+            System.out.println("ocjenaBrojcano" + x[1]);
+            System.out.println("ocjenaOpis" + x[2]);
         }
 
 
