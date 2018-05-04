@@ -1,9 +1,14 @@
 package dao;
 
 import entitymodels.*;
+import org.hibernate.id.GUIDGenerator;
+import org.hibernate.id.UUIDGenerator;
+import sun.rmi.runtime.Log;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
