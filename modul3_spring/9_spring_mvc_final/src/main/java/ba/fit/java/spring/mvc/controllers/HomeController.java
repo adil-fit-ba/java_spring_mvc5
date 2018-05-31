@@ -37,6 +37,6 @@ public class HomeController {
         model.predmetCount = em.createQuery("select count(x) from Predmet x", Long.class).getSingleResult();
 
 
-        return new ModelAndView("redirect:/", "model", model);
+        return new ModelAndView("home/testdb", "model", model);
     }
 }
