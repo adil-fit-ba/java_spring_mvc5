@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: demo
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: adil
+Implementation-Vendor-Id: ba.fit.java.spring.mvc
+Created-By: IntelliJ IDEA
+Build-Jdk: 9.0.4
+Main-Class: ${start-class}
+
